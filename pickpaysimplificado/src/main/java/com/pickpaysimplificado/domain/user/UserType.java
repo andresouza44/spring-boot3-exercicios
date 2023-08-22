@@ -1,4 +1,4 @@
-package domain.user;
+package com.pickpaysimplificado.domain.user;
 
 public enum UserType {
     COMMON,

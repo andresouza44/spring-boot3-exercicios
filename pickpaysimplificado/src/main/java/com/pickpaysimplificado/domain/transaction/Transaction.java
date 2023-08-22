@@ -1,7 +1,7 @@
-package domain.transaction;
+package com.pickpaysimplificado.domain.transaction;
 
 
-import domain.user.User;
+import com.pickpaysimplificado.domain.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

@@ -1,4 +1,4 @@
-package domain.user;
+package com.pickpaysimplificado.domain.user;
 
 
 import jakarta.persistence.*;
@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @EqualsAndHashCode(of="id")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

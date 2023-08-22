@@ -1,6 +1,6 @@
-package repositories;
+package com.pickpaysimplificado.repositories;
 
-import domain.user.User;
+import com.pickpaysimplificado.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
