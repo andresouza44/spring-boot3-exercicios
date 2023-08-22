@@ -2,7 +2,7 @@ package com.pickpaysimplificado.services;
 
 import com.pickpaysimplificado.domain.transaction.Transaction;
 import com.pickpaysimplificado.domain.user.User;
-import com.pickpaysimplificado.dto.TransactionDTO;
+import com.pickpaysimplificado.dtos.TransactionDTO;
 import com.pickpaysimplificado.repositories.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

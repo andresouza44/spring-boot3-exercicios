@@ -1,4 +1,4 @@
-package com.pickpaysimplificado.dto;
+package com.pickpaysimplificado.dtos;
 
 import java.math.BigDecimal;
 

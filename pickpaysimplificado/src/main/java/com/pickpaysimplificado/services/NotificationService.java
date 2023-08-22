@@ -1,7 +1,7 @@
 package com.pickpaysimplificado.services;
 
 import com.pickpaysimplificado.domain.user.User;
-import com.pickpaysimplificado.dto.NotificationDTO;
+import com.pickpaysimplificado.dtos.NotificationDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
