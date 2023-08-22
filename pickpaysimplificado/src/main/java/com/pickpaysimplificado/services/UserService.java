@@ -19,7 +19,7 @@ public class UserService {
 
     public void validateTransaction(User userSender , BigDecimal amount) throws Exception {
         if (userSender.getUserType() == UserType.MERCHANT){
-            throw new Exception("Logista não está autorizado a realizar esse tipo de tranasação");
+            throw new Exception("Logista não está autorizado a realizar esse tipo de transação");
         }
 
         if (userSender.getBalance().compareTo(amount) <0 ){

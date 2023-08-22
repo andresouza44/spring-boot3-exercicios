@@ -38,7 +38,7 @@ public class TransactionService {
         boolean isAuthorized = this.authorizeTransaction(sender, transaction.value());
 
         if(!isAuthorized){
-            throw  new Exception("Tranzação não autorizada");
+            throw  new Exception("Transação não autorizada");
         }
 
         Transaction newTransaction = new Transaction();
