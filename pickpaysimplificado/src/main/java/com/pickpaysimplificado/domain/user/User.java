@@ -30,12 +30,12 @@ public class User {
     private UserType userType;
 
     public User(UserDTO data) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.document = document;
-        this.email = email;
-        this.password = password;
-        this.balance = balance;
-        this.userType = userType;
+        this.firstName = data.firstName();
+        this.lastName = data.lastName();
+        this.document = data.document();
+        this.email = data.email();
+        this.password = data.password();
+        this.balance = data.balance();
+        this.userType = data.userType();
     }
 }
