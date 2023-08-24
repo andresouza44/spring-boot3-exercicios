@@ -3,6 +3,7 @@ package dev.danvega.contentcalendar.controller;
 
 import dev.danvega.contentcalendar.model.Content;
 import dev.danvega.contentcalendar.repository.ContentCollectionRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ public class ContentController {
     }
 
     @GetMapping("/{id}")
-    public Content findById(@PathVariable Integer id){
+    public Content findById( @PathVariable Integer id){
         Optional<Content> obj = repository.findById(id);
         return  obj.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"Content not found!"));
 //        return  repository.findById(id)
@@ -36,7 +37,7 @@ public class ContentController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void  create( @RequestBody Content content){
+    public void  create(@Valid @RequestBody Content content){
         repository.saveContent(content);
 
     }
