@@ -2,6 +2,7 @@ package dev.danvega.contentcalendar.controller;
 
 
 import dev.danvega.contentcalendar.model.Content;
+import dev.danvega.contentcalendar.model.ContentRepository;
 import dev.danvega.contentcalendar.repository.ContentCollectionRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,14 @@ public class ContentController {
     @Autowired
     private ContentCollectionRepository repository;
 
+    @Autowired
+    private ContentRepository contentRepository;
+
+
+
     @GetMapping
     public List<Content> findAll(){
-        return repository.findAll();
+        return contentRepository.findAll();
     }
 
     @GetMapping("/{id}")
@@ -38,7 +44,7 @@ public class ContentController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void  create(@Valid @RequestBody Content content){
-        repository.saveContent(content);
+        repository.save(content);
 
     }
 
@@ -55,7 +61,7 @@ public class ContentController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id){
-        repository.delete(id);
+        repository.deleteById(id);
 
     }
 }

@@ -4,6 +4,8 @@ import dev.danvega.contentcalendar.model.Content;
 import dev.danvega.contentcalendar.model.Status;
 import dev.danvega.contentcalendar.model.Type;
 import jakarta.annotation.PostConstruct;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
@@ -41,7 +43,7 @@ public class ContentCollectionRepository {
 
     }
 
-    public  void delete(Integer id){
+    public  void deleteById(Integer id){
         contentList.removeIf(c -> c.id().equals(id));
 
     }
