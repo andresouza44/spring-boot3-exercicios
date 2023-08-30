@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/content-calendar/content-calendar.iml" filepath="$PROJECT_DIR$/content-calendar/content-calendar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pickpaysimplificado/pickpaysimplificado.iml" filepath="$PROJECT_DIR$/pickpaysimplificado/pickpaysimplificado.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-Boot-MongoDB/spring-Boot-MongoDB.iml" filepath="$PROJECT_DIR$/spring-Boot-MongoDB/spring-Boot-MongoDB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-boot3-exercicios.iml" filepath="$PROJECT_DIR$/.idea/spring-boot3-exercicios.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ProjetoProducts2/springboot.iml" filepath="$PROJECT_DIR$/ProjetoProducts2/springboot.iml" />
+    </modules>
+  </component>
+</project>
