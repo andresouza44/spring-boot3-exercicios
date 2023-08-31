@@ -6,7 +6,7 @@ import java.time.Instant;
 import java.util.Objects;
 
 @Entity
-@Table(name = "tb_bookmark")
+@Table(name = "bookmarks")
 public class Bookmark {
 
     @Id
