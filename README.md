@@ -1,6 +1,6 @@
 <img width="50" height="50" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" />  
 
-# Lista de projetos para estudo de Sprint Boot 3.
+# Lista de projetos para estudo de Spring Boot 3.
 
 [Desafio de Vaga BackEnd PicPay](pickpaysimplificado)</br>
 [Product]()</br>
