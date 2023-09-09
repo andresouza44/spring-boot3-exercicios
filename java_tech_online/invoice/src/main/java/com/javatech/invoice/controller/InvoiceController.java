@@ -7,18 +7,21 @@ import com.javatech.invoice.service.InvoiceServiceImpl;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/invoice")
 public class InvoiceController {
 
     @Autowired
     InvoiceServiceImpl service;
+
+
 
     @GetMapping("/")
     public String showHomePage(){
@@ -34,20 +37,23 @@ public class InvoiceController {
     public String saveInvoice(@ModelAttribute Invoice invoice, Model model){
         service.saveInvoice(invoice);
         Long id = service.saveInvoice(invoice).getId();
-        String message = "Record with " + id + "is save successfully ";
+        String message = "Record with " + id + " is save successfully ";
         model.addAttribute("message", message);
         return "registerInvoicePage";
     }
 
     @GetMapping("/getAllInvoices")
-    public String getAllInvoices(@RequestParam(value="message", required=false)
-                                     String message, Model model){
+    public String getAllInvoices(
+            @RequestParam(value = "message", required = false) String message,
+            Model model
+    ) {
         List<Invoice> invoices = service.getAllInvoices();
         model.addAttribute("list", invoices);
         model.addAttribute("message", message);
-        return "allInvoicePage";
+        return "allInvoicesPage";
 
     }
+
     @GetMapping("/edit")
     public String getEditPage(Model model, RedirectAttributes attributes,@RequestParam Long id){
         String page = null;
@@ -74,13 +80,13 @@ public class InvoiceController {
     public String deleteInvoice(@RequestParam Long id, RedirectAttributes attributes){
             try {
                 service.deleteInvoiceById(id);
-                attributes.addAttribute("message", "Invoie with id " + id + "is remoced successfully");
+                attributes.addAttribute("message", "Invoice with id " + id + "is removed successfully");
             }
             catch (InvoiceNotFoundException e){
                 e.printStackTrace();
                 attributes.addAttribute("message", e.getMessage());
             }
-        return "redirect:gettAllInvoices";
+        return "redirect:getAllInvoices";
 
     }
 
