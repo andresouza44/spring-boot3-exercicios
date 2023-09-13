@@ -1,8 +1,11 @@
 package com.andre.usuariosApi.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
+import javax.lang.model.type.UnionType;
 import java.util.Objects;
 
 @Entity
@@ -13,8 +16,11 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @Column(nullable = true)
+    @NotBlank(message = "o nome é obrigatório")
+    @Column(unique = true)
     String name;
+
+    @Column(unique = true)
     String email;
     String senha;
     String telefone;

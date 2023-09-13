@@ -1,11 +1,12 @@
 package com.andre.usuariosApi.controller;
 
 import com.andre.usuariosApi.model.Usuario;
-import com.andre.usuariosApi.repository.UsuarioRepository;
 import com.andre.usuariosApi.service.UsuarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,10 +18,13 @@ import java.util.Optional;
 public class UsuarioController {
 
     @Autowired
-    UsuarioRepository iUsuario;
+    private UsuarioService service;
 
-    @Autowired
-    UsuarioService service;
+
+    public UsuarioController(UsuarioService service) {
+        this.service = service;
+
+    }
 
     @GetMapping
     public ResponseEntity <List<Usuario> >findAll(){
@@ -30,8 +34,8 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> salvarUsuario( @RequestBody Usuario usuario) {
-        Usuario obj = service.saveUsuario(usuario);
+    public ResponseEntity<Usuario> salvarUsuario(@Valid @RequestBody Usuario usuario) {
+        Usuario obj = service.salvarUsuario(usuario);
         return ResponseEntity.status(HttpStatus.CREATED).body(obj);
     }
 
@@ -49,6 +53,15 @@ public class UsuarioController {
         }
         service.deleteById(id);
         return ResponseEntity.status(HttpStatus.OK).body("Usuário deletado com successo");
+    }
+
+    @PostMapping(value = "/login")
+    public ResponseEntity <Usuario> validarSenha (@RequestBody Usuario usuario){
+        Boolean valid = service.validarSenha(usuario);
+        if (!valid){
+            return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 }
