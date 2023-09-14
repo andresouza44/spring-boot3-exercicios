@@ -11,9 +11,8 @@ As seguintes tecnologias foram utilizadas no desenvolvimento do Projeto: </br>
   <img  loading="lazy" src="https://img.shields.io/badge/PostgreSQL-4169E1.svg?style=for-the-badge&logo=PostgreSQL&logoColor=white">
   <img  loading="lazy" src="https://img.shields.io/badge/Docker-2496ED.svg?style=for-the-badge&logo=Docker&logoColor=white">
 </div>
-
- - Spring Security e JWT Tokens
- - Spring Boot 3, Spring Framework 6, Java 17 , PostgreSQL e Docker.
+</br>
+  
 
 Projeto base: products-API de Michelli Brito:  https://www.youtube.com/watch?v=wlYvA2b1BWI&t=460s
 
