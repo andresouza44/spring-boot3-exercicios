@@ -67,8 +67,7 @@ public class UsuarioService {
     }
 
     public Token gerarToken(@Valid  UsuarioDTO usuario) {
-        // Usuario user = repository.findByNameOrEmail(usuario.getName(), usuario.getEmail());
-        Usuario user = repository.findByName(usuario.getName());
+         Usuario user = repository.findBynameOrEmail(usuario.getName(), usuario.getEmail());
         if (user != null) {
             Boolean valid = passwordEncoder.matches(usuario.getSenha(), user.getSenha());
             if (valid) {
