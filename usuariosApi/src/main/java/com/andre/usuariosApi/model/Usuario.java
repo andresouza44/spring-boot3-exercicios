@@ -20,7 +20,7 @@ public class Usuario {
     @Column(unique = true)
     String name;
 
-
+    @NotBlank
     @Column(unique = true)
     String email;
     String senha;
