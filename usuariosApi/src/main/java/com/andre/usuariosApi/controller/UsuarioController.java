@@ -1,6 +1,8 @@
 package com.andre.usuariosApi.controller;
 
+import com.andre.usuariosApi.dto.UsuarioDTO;
 import com.andre.usuariosApi.model.Usuario;
+import com.andre.usuariosApi.security.Token;
 import com.andre.usuariosApi.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,12 +58,12 @@ public class UsuarioController {
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity <Usuario> validarSenha (@RequestBody Usuario usuario){
-        Boolean valid = service.validarSenha(usuario);
-        if (!valid){
-            return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    public ResponseEntity <Token> logar (@RequestBody UsuarioDTO usuarioDTO){
+        Token token = service.gerarToken(usuarioDTO);
+        if (token !=null){
+            return  ResponseEntity.status(HttpStatus.OK).body(token);
         }
-        return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
 }

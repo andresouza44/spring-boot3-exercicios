@@ -1,7 +1,11 @@
 package com.andre.usuariosApi.service;
 
+import com.andre.usuariosApi.dto.UsuarioDTO;
 import com.andre.usuariosApi.model.Usuario;
 import com.andre.usuariosApi.repository.UsuarioRepository;
+import com.andre.usuariosApi.security.Token;
+import com.andre.usuariosApi.security.TokenUtil;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -59,6 +63,20 @@ public class UsuarioService {
             valid = false;
         }
         return  valid;
+
+    }
+
+    public Token gerarToken(@Valid  UsuarioDTO usuario) {
+        // Usuario user = repository.findByNameOrEmail(usuario.getName(), usuario.getEmail());
+        Usuario user = repository.findByName(usuario.getName());
+        if (user != null) {
+            Boolean valid = passwordEncoder.matches(usuario.getSenha(), user.getSenha());
+            if (valid) {
+                return new Token(TokenUtil.createToken(user));
+            }
+
+        }
+        return null;
 
     }
 }
