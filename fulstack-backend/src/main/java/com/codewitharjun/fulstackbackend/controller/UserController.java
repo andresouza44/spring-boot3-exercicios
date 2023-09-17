@@ -27,7 +27,7 @@ public class UserController {
     }
     @GetMapping(value ="/{id}")
     public User findById(@PathVariable Long id){
-        return service.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        return service.findById(id);
 
     }
 
@@ -36,6 +36,20 @@ public class UserController {
     public ResponseEntity save(@RequestBody User user){
         User newUser = service.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(newUser);
+    }
+
+    @PutMapping(value="/{id}")
+    public User updateUser(@RequestBody User user, @PathVariable Long id){
+        return service.updateUser(user,id);
+
+    }
+
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.ok().body("User with id " + id + " deleted successfully");
+
+
     }
 
 }

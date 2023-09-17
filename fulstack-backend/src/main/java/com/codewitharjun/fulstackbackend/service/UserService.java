@@ -24,10 +24,26 @@ public class UserService {
 
 
     }
-    public Optional<User> findById (Long id){
-        return  repository.findById(id);
+    public User findById (Long id){
+        return  repository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
+    public User updateUser (User user , Long id){
+       User userUpdate = this.findById(id);
+       userUpdate.setName(user.getName());
+       userUpdate.setUsername(user.getUsername());
+       userUpdate.setEmail(user.getEmail());
+       repository.save(userUpdate);
+
+        return  userUpdate;
+
+    }
+
+    public void delete(Long id){
+        User user = findById(id);
+        repository.delete(user);
+
+    }
 
 
 }
