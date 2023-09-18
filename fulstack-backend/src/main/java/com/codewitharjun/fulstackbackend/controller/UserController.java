@@ -1,20 +1,14 @@
 package com.codewitharjun.fulstackbackend.controller;
 
-import com.codewitharjun.fulstackbackend.exception.UserNotFoundException;
 import com.codewitharjun.fulstackbackend.model.User;
 import com.codewitharjun.fulstackbackend.service.UserService;
-import jakarta.validation.ConstraintDeclarationException;
-import jakarta.validation.ConstraintDefinitionException;
 import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")

@@ -2,7 +2,6 @@ package com.codewitharjun.fulstackbackend.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
-import org.hibernate.mapping.UniqueKey;
 
 @Entity
 @Table
