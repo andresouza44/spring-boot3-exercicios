@@ -17,4 +17,14 @@ public class UserNotfoundAdvice {
         errorMap.put("errorMessage", exception.getMessage());
         return errorMap;
     }
+
+    @ResponseBody
+    @ExceptionHandler(FieldInvalidException.class)
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    public Map<String,String> filedHandler(FieldInvalidException exception){
+        Map<String, String > errorMap = new HashMap<>();
+        errorMap.put("errorMessage", exception.getMessage());
+        return errorMap;
+    }
+
 }
