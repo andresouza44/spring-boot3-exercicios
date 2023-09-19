@@ -10,7 +10,3 @@ As seguintes tecnologias foram utilizadas no desenvolvimento do Projeto: </br>
 <img  loading="lazy" src="https://img.shields.io/badge/MySQL-4479A1.svg?style=for-the-badge&logo=MySQL&logoColor=white">
 </div>
 
-  
-
-P
-
