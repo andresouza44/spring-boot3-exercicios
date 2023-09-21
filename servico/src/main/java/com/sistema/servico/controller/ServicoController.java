@@ -28,9 +28,9 @@ public class ServicoController {
     }
 
     @GetMapping(value = "/{status}")
-    public ResponseEntity  <List<Servico>> findByStatus(@PathVariable Status status){
-        List <Servico> servicos = service.finfByStatus(status);
-        return  ResponseEntity.ok().body(servicos);
+    public ResponseEntity  <List<Servico>> findByStatus(@PathVariable Status status) {
+                List<Servico> servicos = service.finfByStatus(status);
+                return ResponseEntity.ok().body(servicos);
     }
 
     @PutMapping (value="/{id}")
@@ -43,9 +43,7 @@ public class ServicoController {
         else {
             Servico servicoCriado = service.save(servico);
             return  ResponseEntity.status(HttpStatus.CREATED).body(servicoCriado);
-
         }
-
     }
 
     @PostMapping
