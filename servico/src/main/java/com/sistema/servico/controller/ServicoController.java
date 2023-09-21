@@ -28,9 +28,14 @@ public class ServicoController {
     }
 
     @GetMapping(value = "/{status}")
-    public ResponseEntity  <List<Servico>> findByStatus(@PathVariable Status status) {
-                List<Servico> servicos = service.finfByStatus(status);
+    public ResponseEntity  <?> findByStatus(@PathVariable String status) {
+            try {
+               Status st = Status.valueOf(status.toUpperCase());
+                List<Servico> servicos = service.finfByStatus(st);
                 return ResponseEntity.ok().body(servicos);
+            }catch (IllegalArgumentException e){
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Status "+ status + " not found.");
+            }
     }
 
     @PutMapping (value="/{id}")
