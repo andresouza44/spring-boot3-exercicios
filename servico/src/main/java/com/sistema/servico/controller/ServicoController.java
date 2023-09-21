@@ -31,7 +31,7 @@ public class ServicoController {
     public ResponseEntity  <?> findByStatus(@PathVariable String status) {
             try {
                Status st = Status.valueOf(status.toUpperCase());
-                List<Servico> servicos = service.finfByStatus(st);
+                List<Servico> servicos = service.findByStatus(st);
                 return ResponseEntity.ok().body(servicos);
             }catch (IllegalArgumentException e){
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Status "+ status + " not found.");
@@ -39,14 +39,13 @@ public class ServicoController {
     }
 
     @PutMapping (value="/{id}")
-    public ResponseEntity <?> updatdServico(@RequestBody Servico servico, @PathVariable Long id){
+    public ResponseEntity <?> updateServico(@RequestBody Servico servico, @PathVariable Long id){
         Optional<Servico> obj = service.findById(id);
         if (obj.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Servico with id "+ id + "not found");
-
         }
         else {
-            Servico servicoCriado = service.save(servico);
+            Servico servicoCriado = service.update(servico, id);
             return  ResponseEntity.status(HttpStatus.CREATED).body(servicoCriado);
         }
     }

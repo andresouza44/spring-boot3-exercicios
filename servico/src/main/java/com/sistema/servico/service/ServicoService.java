@@ -26,25 +26,21 @@ public class ServicoService {
         return repository.findById(id);
     }
 
-
-    public List<Servico> finfByStatus( Status status){
+    public List<Servico> findByStatus(Status status){
         return  repository.findAll().stream()
                 .filter(e -> e.getStatus().equals(status))
                 .toList();
     }
-
     public List<Servico> findByStatusPendente(){
         return repository.findAll().stream()
                 .filter(e -> e.getStatus().equals(Status.PENDENTE))
                 .toList();
     }
-
     public List<Servico> findByStatusCancelado(){
         return repository.findAll().stream()
                 .filter(e -> e.getStatus().equals(Status.CANCELADO))
                 .toList();
     }
-
     public Servico save(Servico servico){
         if (servico.getValorPago() < servico.getValorServico() ){
             servico.setStatus(Status.PENDENTE);
@@ -59,23 +55,32 @@ public class ServicoService {
 
     }
 
-    public Servico update(Servico servicoUpdate){
-        if (servicoUpdate.getValorPago().equals(servicoUpdate.getValorServico())){
-            servicoUpdate.setStatus(Status.REALIZADO);
-        }
+    public Servico update(Servico servicoUpdate, Long id){
+        Servico servico = findById(id).get();
+        servico.setDataPagamento(servicoUpdate.getDataPagamento());
+        servico.setValorServico(servicoUpdate.getValorServico());
+        servico.setDescricao(servicoUpdate.getDescricao());
+        servico.setDataInicio(servicoUpdate.getDataInicio());
+        servico.setDataTermino(servicoUpdate.getDataTermino());
+        servico.setNomeCliente(servicoUpdate.getNomeCliente());
+        servico.setValorPago(servicoUpdate.getValorPago());
 
-        Servico servico = findById(servicoUpdate.getId()).get();
+        if (servicoUpdate.getStatus()!= null){
+            servico.setStatus(servicoUpdate.getStatus());
+        }
+        if (!servico.getStatus().equals(Status.CANCELADO)){
+            if(servico.getValorPago() < servico.getValorServico()){
+                servico.setStatus(Status.PENDENTE);
+            } else{
+                servico.setStatus(Status.REALIZADO);
+            }
+        }
         if(!servicoUpdate.getValorPago().equals(servico.getValorPago())) {
-            servico.setDataPagamento(LocalDate.now());
+            servicoUpdate.setDataPagamento(LocalDate.now());
         }
-
-        return  repository.save(servicoUpdate);
-
+        return  repository.save(servico);
     }
-
     public void delete (Long id){
         repository.deleteById(id);
-
     }
-
 }
