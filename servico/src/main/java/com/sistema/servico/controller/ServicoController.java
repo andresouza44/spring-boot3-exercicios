@@ -42,7 +42,7 @@ public class ServicoController {
     public ResponseEntity <?> updateServico(@RequestBody Servico servico, @PathVariable Long id){
         Optional<Servico> obj = service.findById(id);
         if (obj.isEmpty()){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Servico with id "+ id + "not found");
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Servico with id "+ id + " not found");
         }
         else {
             Servico servicoCriado = service.update(servico, id);

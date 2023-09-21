@@ -1,5 +1,6 @@
 package com.sistema.servico.service;
 
+import com.sistema.servico.exception.ServicoNotFoundException;
 import com.sistema.servico.model.Servico;
 import com.sistema.servico.model.Status;
 import com.sistema.servico.repository.ServicoRepository;
@@ -25,6 +26,16 @@ public class ServicoService {
     public Optional<Servico> findById(Long id){
         return repository.findById(id);
     }
+
+//    public Servico  findById(Long id){
+//        Optional<Servico> servico = repository.findById(id);
+//        if (servico.isPresent()){
+//            return  servico.get();
+//        }
+//        else {
+//            throw  new ServicoNotFoundException(id);
+//        }
+//    }
 
     public List<Servico> findByStatus(Status status){
         return  repository.findAll().stream()
@@ -80,6 +91,13 @@ public class ServicoService {
         }
         return  repository.save(servico);
     }
+
+    public void cancelarServico (Long id){
+        Servico servico = findById(id).get();
+        servico.setStatus(Status.CANCELADO);
+        repository.save(servico);
+    }
+
     public void delete (Long id){
         repository.deleteById(id);
     }
