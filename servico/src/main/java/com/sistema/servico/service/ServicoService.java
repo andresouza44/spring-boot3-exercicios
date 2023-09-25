@@ -53,7 +53,14 @@ public class ServicoService {
                 .toList();
     }
     public Servico save(Servico servico){
-        if (servico.getValorPago() < servico.getValorServico() ){
+        if (servico.getValorPago() == null){
+            servico.setValorPago(0.);
+
+        }
+        if (servico.getValorServico() == null){
+            servico.setValorServico(0.);
+        }
+        if (servico.getValorPago() < servico.getValorServico() || servico.getValorServico()==0){
             servico.setStatus(Status.PENDENTE);
         } else{
             servico.setStatus(Status.REALIZADO);

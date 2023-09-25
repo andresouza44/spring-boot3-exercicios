@@ -16,6 +16,7 @@ import java.util.Stack;
 
 @RestController
 @RequestMapping(value="/servico")
+@CrossOrigin("http://localhost:3000")
 public class ServicoController {
 
     @Autowired
@@ -48,6 +49,19 @@ public class ServicoController {
             Servico servicoCriado = service.update(servico, id);
             return  ResponseEntity.status(HttpStatus.CREATED).body(servicoCriado);
         }
+    }
+
+    @PutMapping(value="/cancelar/{id}")
+    public ResponseEntity<?> cancelarServico(@PathVariable Long id){
+        Optional <Servico> servico = service.findById(id);
+        if(servico.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Servico with id "+ id + " not found");
+        }
+        else{
+            service.cancelarServico(id);
+            return ResponseEntity.noContent().build();
+        }
+
     }
 
     @PostMapping
