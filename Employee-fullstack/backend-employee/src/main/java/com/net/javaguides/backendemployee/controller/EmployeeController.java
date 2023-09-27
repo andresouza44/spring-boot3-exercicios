@@ -4,11 +4,9 @@ package com.net.javaguides.backendemployee.controller;
 import com.net.javaguides.backendemployee.model.Employee;
 import com.net.javaguides.backendemployee.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,4 +23,33 @@ public class EmployeeController {
     public ResponseEntity <List<Employee>> getAll(){
         return ResponseEntity.ok().body(service.getAll());
     }
+
+    @GetMapping(value="/{id}")
+    public ResponseEntity <Employee> findById(@PathVariable  Long id){
+        Employee employee = service.findById(id);
+        return ResponseEntity.ok(employee);
+
+    }
+
+    @PostMapping
+    public ResponseEntity createEmployee(@RequestBody Employee employee){
+        Employee obj = service.saveEmployee(employee);
+        return ResponseEntity.status(HttpStatus.CREATED).body(obj);
+    }
+
+    @DeleteMapping(value="/{id}")
+    public ResponseEntity deleteById(@PathVariable Long id){
+        service.deleteByid(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Employee> updateEmployee (@RequestBody Employee employeeUpdate,@PathVariable Long id){
+        Employee newEmployee = service.updateEmployee(employeeUpdate, id);
+        return ResponseEntity.ok(newEmployee);
+    }
+
+
 }
+
+
