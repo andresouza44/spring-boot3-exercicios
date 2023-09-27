@@ -1,6 +1,9 @@
-import axios from 'axios'
+
 import React, { useEffect, useState } from 'react'
 import EmployeeService from './EmployeeService';
+import { Link,Navigate } from 
+'react-router-dom';
+import axios from 'axios'
 
 export const ListEmployeeComponent = () => {
   
@@ -13,23 +16,19 @@ export const ListEmployeeComponent = () => {
             console.log(erro);
         })
     },[]);
-/*
-    const loadEmployee = async () =>{
-        const result = await axios.get("http://localhost:8080/employee")
-        setEmployees(result.data)
-        console.log(result.data)
-    }
-*/
+
   return (
-    <div className='container'>
-        <h2> Employees List</h2>
-        <br/>
-        <table className='table table-bordered table-stripde'>
-            <thead>
+    <div className='container'  >
+        <h2 className='text-center'> Employees List</h2>
+        <Link to="/addemployee" className='btn btn-primary md-2'>Add Employee</Link>
+        <br/><br/>
+        <table className='table table-bordered table-striped'>
+            <thead className="table">
                 <th>Id</th>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Email</th>
+                <th>Actions</th>
             </thead>
             <tbody>{
                 employees.map(
@@ -39,6 +38,10 @@ export const ListEmployeeComponent = () => {
                         <td>{employees.firstName}</td>
                         <td>{employees.lastName}</td>
                         <td>{employees.emailId}</td>
+                        <td>
+                            <Link className='btn btn-info' to={`/edit-employee/${employees.id}`}>Update</Link>
+                        </td>
+                        
                     </tr>
                 )
                 }
