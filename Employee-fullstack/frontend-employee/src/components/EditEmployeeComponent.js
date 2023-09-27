@@ -20,7 +20,7 @@ setEmployee({...employee,[e.target.name]:e.target.value})
 
 
 useEffect(() => {
-  loadUser();
+  loadEmployee();
 }, []);
 
 
@@ -30,7 +30,7 @@ const onSubmit = async (e) => {
   navigate("/")
 }
 
-const loadUser = async () => {
+const loadEmployee = async () => {
   const result= await axios.get(`http://localhost:8080/employee/${id}`)
   setEmployee(result.data)
 }
@@ -74,10 +74,10 @@ const loadUser = async () => {
               onChange={(e) => onInputChange(e)}
             />
           </div>
-          <button type='submit' className='btn btn-outline-primary'>
+          <button type='submit' className='btn btn-outline-primary btn-sm mx-1'>
                         Submit
                     </button>
-                    <Link className='btn btn-outline-danger mx-2' to="/">
+                    <Link className='btn btn-outline-danger btn-sm mx-1' to="/">
                         Cancel
                     </Link>
           

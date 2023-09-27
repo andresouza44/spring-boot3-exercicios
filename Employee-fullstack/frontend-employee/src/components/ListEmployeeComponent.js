@@ -1,21 +1,37 @@
 
 import React, { useEffect, useState } from 'react'
 import EmployeeService from './EmployeeService';
-import { Link,Navigate } from 
-'react-router-dom';
+import { Link,Navigate, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios'
 
 export const ListEmployeeComponent = () => {
-  
+let navigate = useNavigate()
+
+const {id} =  useParams()  
     const [ employees, setEmployees] = useState([])
 
     useEffect(()=>{
-        EmployeeService.getAllEmployee().then((response) => {
-        setEmployees(response.data)
-        } ).catch(erro =>{
-            console.log(erro);
-        })
+       getAllEmployees();
     },[]);
+
+    const getAllEmployees = () =>{
+        EmployeeService.getAllEmployee().then((response) => {
+            setEmployees(response.data)
+            } ).catch(erro =>{
+                console.log(erro);
+            })
+
+
+    }
+
+    const deleteEmployee = async (id) => {
+        await axios.delete(`http://localhost:8080/employee/${id}`)
+        getAllEmployees()
+       
+        
+    }
+
+
 
   return (
     <div className='container'  >
@@ -39,7 +55,10 @@ export const ListEmployeeComponent = () => {
                         <td>{employees.lastName}</td>
                         <td>{employees.emailId}</td>
                         <td>
-                            <Link className='btn btn-info' to={`/edit-employee/${employees.id}`}>Update</Link>
+                            <Link className='btn btn-info btn-sm mx-1' to={`/edit-employee/${employees.id}`}>Update</Link>
+                       
+
+                        <button className="btn btn-danger btn-sm mx-1" onClick={() => deleteEmployee(employees.id)}>Deletar</button>
                         </td>
                         
                     </tr>

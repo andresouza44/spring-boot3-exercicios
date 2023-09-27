@@ -80,8 +80,8 @@ const saveEmployee =  (e) => {
                   >
                   </input>
                   <br/>
-                  <button className='btn btn-success' onClick={ (e) => saveEmployee(e)}>Create Employee</button>
-                  <Link to="/employees" className='btn btn-danger'>Cancel</Link>
+                  <button className='btn btn-success btn-sm mx-1' onClick={ (e) => saveEmployee(e)}>Submit</button>
+                  <Link to="/employees" className='btn btn-danger btn-sm mx-1'>Cancel</Link>
             
 
 
